@@ -15,7 +15,9 @@ Vagrant::Config.run do |config|
   servers.each do |name, opts|
     config.vm.define name do |riak|
       # uncomment the following line if you want the basebox to start in gui mode
-      riak.vm.boot_mode = :gui
+      # https://33.33.33.220:8068/admin/ui/index.html user pass
+      # http://33.33.33.220:8098/stats
+      #riak.vm.boot_mode = :gui
       riak.vm.network :hostonly, opts[:network]
 
       riak.vm.provision :puppet, :facter => { "riak_node_name" => "riak@#{opts[:network]}" } do |puppet|
